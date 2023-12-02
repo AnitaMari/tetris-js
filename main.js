@@ -159,6 +159,28 @@ document.addEventListener('keydown', event => {
       removeRows()
     }
   }
+
+  // 11. Para rotar:
+  if (event.key === 'ArrowUp') {
+    const rotated = []
+
+    for (let i = 0; i < piece.shape[0].length; i++) {
+      const row = []
+
+      for (let j = piece.shape.length - 1; j >= 0; j--) {
+        row.push(piece.shape[j][i])
+      }
+
+      rotated.push(row)
+    }
+
+    // para que las piezas no roten si no caben porque hay colisión
+    const previousShape = piece.shape
+    piece.shape = rotated
+    if (checkCollision()) {
+      piece.shape = previousShape
+    }
+  }
 })
 
 // 4. Para las colisiones:
