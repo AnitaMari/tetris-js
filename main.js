@@ -4,11 +4,18 @@ import './style.css'
 // 1. Inicializar el canvas:
 const canvas = document.querySelector('canvas')
 const context = canvas.getContext('2d')
+// 13. Continuación:
+const $score = document.querySelector('span')
 
 const BLOCK_SIZE = 20
 const BOARD_WIDTH = 14
 const BOARD_HEIGHT = 30
 
+// 12. Puntuación:
+// eslint-disable-next-line no-unused-vars
+let score = 0
+
+// 1. Continuación:
 canvas.width = BLOCK_SIZE * BOARD_WIDTH
 canvas.height = BLOCK_SIZE * BOARD_HEIGHT
 
@@ -134,6 +141,9 @@ function draw () {
       }
     })
   })
+
+  // 13. Para actualizar score
+  $score.innerText = score
 }
 
 document.addEventListener('keydown', event => {
@@ -233,6 +243,8 @@ function removeRows () {
     board.splice(y, 1) // eliminamos una línea
     const newRow = Array(BOARD_WIDTH).fill(0) // y ponemos una nueva línea y la llenamos de 0
     board.unshift(newRow) // y la añadimos al principio
+    // 12. (Continuación). Puntuación. Después ir al index.html
+    score += 10
   })
 }
 
