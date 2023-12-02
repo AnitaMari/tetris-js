@@ -107,6 +107,7 @@ document.addEventListener('keydown', event => {
     if (checkCollision()) {
       piece.position.y--
       solidifyPiece()
+      removeRows()
     }
   }
 })
@@ -135,6 +136,23 @@ function solidifyPiece () {
   // reseteamos la posición de la pieza:
   piece.position.x = 0
   piece.position.y = 0
+}
+
+// 6. Para eliminar las líneas:
+function removeRows () {
+  const rowsToRemove = []
+
+  board.forEach((row, y) => {
+    if (row.every(value => value === 1)) {
+      rowsToRemove.push(y)
+    }
+  })
+
+  rowsToRemove.forEach(y => {
+    board.splice(y, 1) // eliminamos una línea
+    const newRow = Array(BOARD_WIDTH).fill(0) // y ponemos una nueva línea y la llenamos de 0
+    board.unshift(newRow) // y la añadimos al principio
+  })
 }
 
 update()
