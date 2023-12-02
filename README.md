@@ -25,4 +25,9 @@ Next, you have to run the command "npm run dev" to initialize the project in the
 
 ## Demo
 
-This is the video of the project:
+This is the video of the project: 
+
+https://github.com/AnitaMari/tetris-js/assets/116835304/14335e06-9b32-469f-bfcb-b6767dd95e4d
+
+
+
