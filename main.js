@@ -106,6 +106,7 @@ document.addEventListener('keydown', event => {
     piece.position.y++
     if (checkCollision()) {
       piece.position.y--
+      solidifyPiece()
     }
   }
 })
@@ -120,6 +121,20 @@ function checkCollision () {
       )
     })
   })
+}
+
+// 5. Hacer que la pieza forme parte del board cuando haga una línea (solidificar)
+function solidifyPiece () {
+  piece.shape.forEach((row, x) => {
+    row.forEach((value, y) => { // con estas dos líneas estamos todo el tiempo iterando matrices
+      if (value === 1) {
+        board[y + piece.position.y][x + piece.position.x] = 1
+      }
+    })
+  })
+  // reseteamos la posición de la pieza:
+  piece.position.x = 0
+  piece.position.y = 0
 }
 
 update()
