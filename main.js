@@ -175,20 +175,26 @@ function checkCollision () {
 
 // 5. Hacer que la pieza forme parte del board cuando haga una línea (solidificar)
 function solidifyPiece () {
-  piece.shape.forEach((row, x) => {
-    row.forEach((value, y) => { // con estas dos líneas estamos todo el tiempo iterando matrices
+  piece.shape.forEach((row, y) => { // en las matrices es al revés, hay que poner primero la y
+    row.forEach((value, x) => { // con estas dos líneas estamos todo el tiempo iterando matrices
       if (value === 1) {
         board[y + piece.position.y][x + piece.position.x] = 1
       }
     })
   })
 
-// get random shape
-piece.shape = PIECES[Math.floor(Math.random() * PIECES.length)]
-
   // reseteamos la posición de la pieza:
-  piece.position.x = 0
+  piece.position.x = Math.floor(BOARD_WIDTH / 2 - 2) // para que siempre salga la pieza por la mitad más o menos
   piece.position.y = 0
+
+  // 9. Get random shape
+  piece.shape = PIECES[Math.floor(Math.random() * PIECES.length)]
+
+  // 10. Game over
+  if (checkCollision()) {
+    window.alert('Game over! Try again!')
+    board.forEach((row) => row.fill(0))
+  }
 }
 
 // 6. Para eliminar las líneas:
