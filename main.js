@@ -58,6 +58,30 @@ const piece = {
   ]
 }
 
+// 8. Random pieces:
+const PIECES = [
+  [
+    [1, 1],
+    [1, 1]
+  ],
+  [
+    [1, 1, 1, 1]
+  ],
+  [
+    [0, 1, 0],
+    [1, 1, 1]
+  ],
+  [
+    [1, 1, 0],
+    [0, 1, 1]
+  ],
+  [
+    [1, 0],
+    [1, 0],
+    [1, 1]
+  ]
+]
+
 // 2. Game loop: (sin auto drop)
 // function update () {
 //   draw()
@@ -158,6 +182,10 @@ function solidifyPiece () {
       }
     })
   })
+
+// get random shape
+piece.shape = PIECES[Math.floor(Math.random() * PIECES.length)]
+
   // reseteamos la posición de la pieza:
   piece.position.x = 0
   piece.position.y = 0
